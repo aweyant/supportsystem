@@ -50,3 +50,21 @@ stats_caller1 <- stats::dgeom
 ### Wrapping what we have done above in a wrapper/factory function results in
 ### the same type of error I get in my actual application.
 # stats_util_caller1 <- stats_util(stats::dgeom)
+
+### UNCOMMENTING THIS AND RUNNING load_all() RESULTS IN ERROR: "...could not find function..."
+### The issue persists, even if the util is in the very same file
+# stats_util_caller2 <- stats_util_in_same_file(stats::dgeom)
+
+### Interestingly, the function is found in this case.
+uses_stats_util_caller2 <- function() {
+  stats_util_in_same_file(stats::dgeom)
+}
+
+### UNCOMMENTING THIS AND RUNNING load_all() RESULTS IN ERROR: "...could not find function..."
+### Can you use this to make an ugly solution? No, the can has just been kicked
+### down the road
+# uses_uses_stats_util_caller2 <- uses_stats_util_caller2()
+
+stats_util_in_same_file <- function(distribution_function) {
+  return(distribution_function)
+}
